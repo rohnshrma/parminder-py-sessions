@@ -1,0 +1,4 @@
+102,Rice 10Kg,420.0,15,general,-
+101,Milk,45.0,20,perishable,3
+103,Earphones,899.0,8,electronic,6
+105,Notebook,42.0,2,general,-

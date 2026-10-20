@@ -1,0 +1,6 @@
+Line 4 in products.txt: Wrong number of values
+Line 7 in  products.txt --- Wrong number of values
+Expected 6 values.
+Line 7 in  products.txt --- Wrong number of values
+Expected 6 values.
+Line 7 in  products.txt --- Wrong number of values. Expected 6 values.

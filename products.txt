@@ -1,0 +1,7 @@
+102,Rice 10Kg,420.0,15,general,-
+101,Milk,45.0,20,perishable,3
+103,Earphones,899.0,8,electronic,6
+105,Notebook,45.0,12,general,-
+104,Bread,35.0,3,perishable,1
+106,Charger,499.0,10,electronic,12
+anv,badbad product, xx

@@ -1,0 +1,4 @@
+1001,C02,101,Milk,perishable,2,94.5
+1001,C02,102,Rice 5kg,general,3,1411.2
+1001,C02,103,Earphones,electronic,1,942.82
+1002,C01,102,Rice 5kg,general,1,470.4
