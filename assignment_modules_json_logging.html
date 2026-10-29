@@ -1,0 +1,66 @@
+<title>Bench Tool Assignment</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+  /* Layout: single readable column, task list grouped by part */
+  :root {
+    --bg: #f4f6f7; --fg: #1b2528; --muted: #5d6b70; --line: #d5dcde;
+    --accent: #0b6e7f; --code-bg: #e4ebed;
+    --sans: "IBM Plex Sans", system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --bg: #12191b; --fg: #e3eaec; --muted: #94a5aa; --line: #2b383c; --accent: #4cc2d6; --code-bg: #1f2c30; color-scheme: dark; } }
+  :root[data-theme="dark"] {
+    --bg: #12191b; --fg: #e3eaec; --muted: #94a5aa; --line: #2b383c; --accent: #4cc2d6; --code-bg: #1f2c30; color-scheme: dark; }
+  body { background: var(--bg); color: var(--fg); font: 16px/1.6 var(--sans);
+    padding-block: 32px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  main { max-width: 720px; margin: 0 auto; }
+  h1 { font-size: 1.7rem; line-height: 1.2; margin: 0 0 8px; text-wrap: balance; }
+  .sub { color: var(--muted); margin: 0 0 32px; }
+  h2 { font: 600 .8rem/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent);
+    margin: 36px 0 8px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  ol { margin: 0; padding: 0; list-style: none; }
+  li { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  li::before { content: attr(value); font: 500 .95rem/1.7 var(--mono); color: var(--muted); }
+  b { font-weight: 600; }
+  code { font: .88em var(--mono); background: var(--code-bg); padding: 1px 5px; border-radius: 3px; overflow-wrap: anywhere; }
+</style>
+<main>
+  <h1>Modules, Packages, JSON and Logging</h1>
+  <p class="sub">Practical assignment on today's session. Sample data: <code>DATA/readings.csv</code>.</p>
+
+  <h2>A. Modules and imports</h2>
+  <ol>
+    <li value="1"><div><b>Unit converter module:</b> Create <code>converter.py</code> with <code>c_to_f(c)</code> and <code>km_to_miles(km)</code>. In a separate <code>app.py</code>, import both with <code>from converter import ...</code> and print one example of each.</div></li>
+    <li value="2"><div><b>Extend calculator:</b> Add <code>subtraction(a, b)</code> and <code>calcArea(radius)</code> to <code>calculator.py</code>, then call them from <code>main.py</code>.</div></li>
+    <li value="3"><div><b>Import styles:</b> In one file use <code>import calculator</code> (call as <code>calculator.addition(...)</code>), and in another use <code>from calculator import addition as add</code>. Print the same result both ways.</div></li>
+  </ol>
+
+  <h2>B. Packages</h2>
+  <ol>
+    <li value="4"><div><b>Build a package:</b> Create <code>bench_tool/labtools/</code> with an empty <code>__init__.py</code>. Add <code>instruments.py</code> containing a <code>PowerMeter</code> class with <code>connect()</code> and <code>disconnect()</code>.</div></li>
+    <li value="5"><div><b>Use the package:</b> In <code>bench_tool/main.py</code> import <code>PowerMeter</code> with <code>from labtools.instruments import PowerMeter</code>, create one on port <code>"COM3"</code>, then connect and disconnect.</div></li>
+    <li value="6"><div><b>Second instrument:</b> Add a <code>TempSensor</code> class to <code>instruments.py</code> with a <code>read()</code> method that returns a fixed value. Use both classes in <code>main.py</code>.</div></li>
+  </ol>
+
+  <h2>C. JSON configuration</h2>
+  <ol>
+    <li value="7"><div><b>Write a config:</b> Build a dict with <code>station</code>, <code>instrument</code> (model, port, timeout_s), <code>channels</code>, <code>limits</code> (power_mw_min, power_mw_max) and <code>save_raw</code>. Save it to <code>config.json</code> with <code>json.dump</code> and <code>indent=2</code>.</div></li>
+    <li value="8"><div><b>Read a config:</b> Load <code>config.json</code> with <code>json.load</code> and print the port and both limits using chained keys.</div></li>
+    <li value="9"><div><b>Pass / Fail report:</b> Using the limits from the config, print <code>time channel power Pass/Fail</code> for every good row of <code>readings.csv</code>.</div></li>
+    <li value="10"><div><b>Type check:</b> Dump a dict containing <code>True</code>, <code>None</code> and a tuple, then read the file as text and write a comment listing how each became JSON.</div></li>
+  </ol>
+
+  <h2>D. Logging</h2>
+  <ol>
+    <li value="11"><div><b>Levels:</b> Configure <code>logging.basicConfig</code> with level <code>INFO</code> and the format <code>%(asctime)s %(levelname)-8s %(message)s</code>. Log one message at each of DEBUG, INFO, WARNING and ERROR, and note which one does not appear.</div></li>
+    <li value="12"><div><b>Log to file and screen:</b> Add a <code>FileHandler("run.log")</code> and a <code>StreamHandler()</code> so every message goes to both. Check that <code>run.log</code> has the lines.</div></li>
+    <li value="13"><div><b>Log an exception:</b> Wrap <code>float("ERR")</code> in try/except and use <code>logging.exception</code>. Explain in a comment what extra information it adds compared to <code>logging.error</code>.</div></li>
+  </ol>
+
+  <h2>E. Putting it together</h2>
+  <ol>
+    <li value="14"><div><b>Analysis module:</b> Create <code>labtools/analysis.py</code> with <code>load_reading(path)</code>. Use <code>log = logging.getLogger(__name__)</code> and <code>log.warning("line %d skipped : %s", line_no, e)</code> for every row that fails conversion; return the good rows.</div></li>
+    <li value="15"><div><b>Final run:</b> In <code>bench_tool/main.py</code> call <code>basicConfig</code> once, load the config and <code>readings.csv</code> through <code>load_reading</code>, and log how many rows passed and failed against the config limits.</div></li>
+  </ol>
+</main>
